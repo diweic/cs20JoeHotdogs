@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                /* justify-content: center; */
+                flex-direction: column;
+                align-items: center;
+                font-size: larger;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Joe’s Hotdogs</h1>
+        <br/>
+        <!-- <label for="username">Username:</label>
+        <input type="text" id="username" name="username"> -->
+        
+        <script>
+            const hotdog = 4.65
+            const fries = 3.75
+            const soda = 1.89
+            // a function for rounding
+            function showMoney(beforeRounding){
+                afterRound = Math.round(beforeRounding * 100) / 100
+                str = afterRound.toString()
+                checkZero = str.split('.')
+                if (checkZero.length != 1 && checkZero[1].length == 1){
+                    str += '0'
+                }
+                return str
+            }
+            numDogs = prompt("how many hotdogs do you want?", 0)
+            numFries = prompt("how many fries do you want?", 0)
+            numSodas = prompt("how many sodas do you want?", 0)
+            document.write("you ordered " + numDogs 
+            + " hotdogs, total cost for the item is $"
+            + showMoney(hotdog*numDogs) + "<br>")
+            document.write("you ordered " + numFries 
+            + " hotdogs, total cost for the item is $"
+            + showMoney(fries*numFries) + "<br>")
+            document.write("you ordered " + numSodas 
+            + " hotdogs, total cost for the item is $"
+            + showMoney(soda*numSodas) + "<br>")     
+
+            // subtotal, pre-tax, pre-discount
+            subTotal = showMoney(hotdog*numDogs + fries*numFries 
+                            + soda*numSodas)
+            document.write("subtotal is $" 
+            + subTotal + "<br>")
+
+            // calculate discount and subtotal afer discount
+            discount = 0
+            if (subTotal >= 25){
+                discount = showMoney(subTotal * 0.1)
+            }
+            document.write("discount is $" + discount + "<br>")
+            subtotalAfterDiscount = 0
+            if (discount == 0){
+                subtotalAfterDiscount = subTotal
+            }
+            else{
+                subtotalAfterDiscount = showMoney(subTotal - discount)
+            }
+            document.write("subtotal after discount is $" + subtotalAfterDiscount + "<br>")
+         
+            tax = showMoney(subtotalAfterDiscount*0.00625)
+            document.write("tax amount is $" + tax + "<br>")
+            finalTotal = showMoney(parseFloat(subtotalAfterDiscount) + parseFloat(tax))
+            document.write("your final total is $" + finalTotal + "<br>")
+        </script>
+    </body>
+</html>
